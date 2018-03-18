@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/profile_icon"
+        android:iconTint="@color/white"
+        android:title="@string/menu_profile" />
+
+    <item
+        android:id="@+id/navigation_statistics"
+        android:icon="@drawable/statisticks"
+        android:iconTint="@color/white"
+        android:title="@string/menu_statistics" />
+
+    <item
+        android:id="@+id/navigation_settings"
+        android:icon="@drawable/settings_icon"
+        android:iconTint="@color/white"
+        android:title="@string/menu_settings" />
+
+</menu>
