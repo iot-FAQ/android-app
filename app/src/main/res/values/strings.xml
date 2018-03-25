@@ -3,4 +3,13 @@
     <string name="menu_settings">Налаштування</string>
     <string name="menu_profile">Профіль</string>
     <string name="menu_statistics">Статистика</string>
+    <string name="text_not_login">Ви ще не увійшли до акаунту.(</string>
+    <string name="sign_in">Увійти</string>
+    <string name="sign_up">Зареєструватись</string>
+    <string name="list_device">Список пристроїв</string>
+    <string name="time_snapshot">Період зйомки</string>
+    <string name="time_every">Кожні 30 днів</string>
+    <string name="last_send">Останнє подання</string>
+    <string name="use_last_mounth">Використано за останній місяць</string>
+    <string name="graphic">Графік</string>
 </resources>
