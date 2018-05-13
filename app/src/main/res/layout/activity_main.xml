@@ -4,24 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.andriy.i_met.MainActivity"
-    android:background="@color/background">
+    tools:context=".Launcher">
     <LinearLayout
         android:orientation="vertical"
         android:id="@+id/fragmentPlace"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-
     <android.support.design.widget.BottomNavigationView
+        android:elevation="10dp"
+        android:background="#F6F6F6"
         android:id="@+id/navigation_menu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/menu"
-        android:background="@color/menuBackground"
-        app:itemTextColor="@drawable/navigation_icon"
-        app:itemIconTint="@drawable/navigation_icon">
+        app:menu="@menu/menu">
     </android.support.design.widget.BottomNavigationView>
 </android.support.constraint.ConstraintLayout>

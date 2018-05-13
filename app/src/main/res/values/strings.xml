@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">i-Met</string>
+    <string name="title_activity_main">hello</string>
     <string name="menu_settings">Налаштування</string>
     <string name="menu_profile">Профіль</string>
-    <string name="menu_statistics">Статистика</string>
+    <string name="menu_idea">Про ідею</string>
     <string name="text_not_login">Ви ще не увійшли до акаунту.(</string>
     <string name="sign_in">Увійти</string>
     <string name="sign_up">Зареєструватись</string>
@@ -12,4 +13,8 @@
     <string name="last_send">Останнє подання</string>
     <string name="use_last_mounth">Використано за останній місяць</string>
     <string name="graphic">Графік</string>
+    <string name="menu_home">Домашня</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
