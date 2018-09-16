@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+<item android:title="@string/title_statistics"
+    android:id="@+id/botoom_navigation_statistics"
+    android:icon="@drawable/icon_statistics"
+    />
+    <item android:title="@string/title_main_fragment"
+        android:id="@+id/botoom_navigation_main"
+        android:icon="@drawable/icons_home"
+        />
+    <item android:title="@string/titile_economy"
+        android:id="@+id/bottom_navigation_economy"
+        android:icon="@drawable/icon_economy"/>
+</menu>
