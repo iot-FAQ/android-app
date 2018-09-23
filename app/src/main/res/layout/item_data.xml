@@ -6,25 +6,28 @@
     android:layout_height="match_parent">
 
     <android.support.constraint.ConstraintLayout
+        android:background="@drawable/background_card"
         android:id="@+id/layoutForLastData"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="300dp"
+        android:elevation="5dp"
+        android:layout_height="300dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/background_for_gas"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:textColor="@color/white"
+            android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="8dp"
             android:text="@string/type_device_gas"
             android:textAlignment="center"
             android:textSize="22sp"
@@ -32,22 +35,21 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="0dp" />
 
-        <TextView
-            android:id="@+id/lastDataOfDeviceLabel"
-            android:textColor="@color/white"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginLeft="18dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginStart="18dp"
-            android:text="250 м. кб."
-            android:textSize="25sp"
-            android:textStyle="bold"
+        <com.github.mikephil.charting.charts.LineChart
+
+            android:id="@+id/lineChartDeviceData"
+            android:layout_width="290dp"
+            android:layout_height="250dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     </android.support.constraint.ConstraintLayout>
 

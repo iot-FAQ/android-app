@@ -6,29 +6,36 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import java.util.ArrayList;
 
 import it.sephiroth.android.library.widget.HListView;
 
-public class StatisticsFragment extends Fragment{
+public class StatisticsFragment extends Fragment {
     private HListView horizontalLIstOfLastData;
     private View view;
     private ArrayList arrayDevice;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view=inflater.inflate(R.layout.fragment_statistics,container,false);
-        horizontalLIstOfLastData=(HListView) view.findViewById(R.id.lastDataOfDevice);
-        arrayDevice=new ArrayList();
-        arrayDevice.add(new Device("hello",TypeDevice.GAS,56));
-        arrayDevice.add(new Device("hello",TypeDevice.WATER,67));
-        arrayDevice.add(new Device("hello",TypeDevice.GAS,32));
-        arrayDevice.add(new Device("hello",TypeDevice.WATER,90));
-        arrayDevice.add(new Device("hello",TypeDevice.GAS,6574));
-        arrayDevice.add(new Device("hello",TypeDevice.WATER,435));
-        arrayDevice.add(new Device("hello",TypeDevice.WATER,34534));
-        ArrayAdapter arrayAdapter=new LastDataOfDeviceAdapter(getActivity(),arrayDevice);
+        view = inflater.inflate(R.layout.fragment_statistics, container, false);
+        horizontalLIstOfLastData = (HListView) view.findViewById(R.id.lastDataOfDevice);
+        Spinner chooseAdress = view.findViewById(R.id.chooseAdress);
+        chooseAdress.setPrompt("Виберіть адресу");
+        String[] arrayAdress = {"Стрийська 81/17","Стрийська 115","Гашека 13"};
+        ArrayAdapter<String> adapterSpinner=new ArrayAdapter<String>(getActivity(),R.layout.spinner_item,arrayAdress);
+        chooseAdress.setAdapter(adapterSpinner);
+        arrayDevice = new ArrayList();
+        arrayDevice.add(new Device("hello", TypeDevice.GAS, 56));
+        arrayDevice.add(new Device("hello", TypeDevice.WATER, 67));
+        arrayDevice.add(new Device("hello", TypeDevice.GAS, 32));
+        arrayDevice.add(new Device("hello", TypeDevice.WATER, 90));
+        arrayDevice.add(new Device("hello", TypeDevice.GAS, 6574));
+        arrayDevice.add(new Device("hello", TypeDevice.WATER, 435));
+        arrayDevice.add(new Device("hello", TypeDevice.WATER, 34534));
+        ArrayAdapter arrayAdapter = new LastDataOfDeviceAdapter(getActivity(), arrayDevice);
         horizontalLIstOfLastData.setAdapter(arrayAdapter);
         return view;
     }

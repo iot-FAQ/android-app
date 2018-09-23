@@ -11,27 +11,77 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+
 import java.util.ArrayList;
+import java.util.Map;
 
 public class LastDataOfDeviceAdapter extends ArrayAdapter<Device> {
-    public LastDataOfDeviceAdapter (Activity context, ArrayList<Device> devices) {
+    public LastDataOfDeviceAdapter(Activity context, ArrayList<Device> devices) {
         super(context, 0, devices);
 
     }
+
     @NonNull
     @Override
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         @SuppressLint("ViewHolder") final View listView = LayoutInflater.from(getContext()).inflate(
                 R.layout.item_data, parent, false);
-        TextView lastDataOfDevice=(TextView) listView.findViewById(R.id.lastDataOfDeviceLabel);
-        Device current=getItem(position);
-        lastDataOfDevice.setText(String.valueOf(current.getData())+" м. кб.");
-        ConstraintLayout layout=(ConstraintLayout)listView.findViewById(R.id.layoutForLastData);
-        if(current.getTypeDevice().equals(TypeDevice.GAS)){
-            layout.setBackgroundDrawable(ContextCompat.getDrawable(getContext(),R.drawable.background_for_gas));
-        }else {
-            layout.setBackgroundDrawable(ContextCompat.getDrawable(getContext(),R.drawable.background_for_water));
+        Device current = getItem(position);
+        LineChart lineChart = listView.findViewById(R.id.lineChartDeviceData);
+        final ArrayList<Entry> listEntry = new ArrayList<>();
+        listEntry.add(new Entry(0, 50));
+        listEntry.add(new Entry(1, 65));
+        listEntry.add(new Entry(2, 100));
+        listEntry.add(new Entry(3, 115));
+        listEntry.add(new Entry(4, 120));
+        listEntry.add(new Entry(5, 135));
+        LineDataSet dataSet = new LineDataSet(listEntry, "gas");
+        dataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+        dataSet.setDrawValues(false);
+        dataSet.setDrawFilled(true);
+        dataSet.setFillAlpha(170);
+        if (current.getTypeDevice() == TypeDevice.GAS) {
+            dataSet.setFillColor(ContextCompat.getColor(getContext(), R.color.gasChart));
+        } else {
+            dataSet.setFillColor(ContextCompat.getColor(getContext(), R.color.waterChart));
         }
+        final ArrayList<String> arrayLabels = new ArrayList<>();
+        arrayLabels.add("21/09/2018");
+        arrayLabels.add("22/09/2018");
+        arrayLabels.add("23/09/2018");
+        arrayLabels.add("24/09/2018");
+        arrayLabels.add("25/09/2018");
+        arrayLabels.add("26/09/2018");
+        LineData lineData = new LineData(dataSet);
+        XAxis xAxis = lineChart.getXAxis();
+        YAxis yAxis= lineChart.getAxisLeft();
+        yAxis.setGridColor(ContextCompat.getColor(getContext(),R.color.white));
+        YAxis rightAxis=lineChart.getAxisRight();
+        rightAxis.setEnabled(false);
+        yAxis.setTextColor(ContextCompat.getColor(getContext(),R.color.white));
+        xAxis.setTextColor(ContextCompat.getColor(getContext(),R.color.white));
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setDrawGridLines(false);
+        xAxis.setLabelRotationAngle(45);
+        xAxis.setValueFormatter(new IAxisValueFormatter() {
+            @Override
+            public String getFormattedValue(float value, AxisBase axis) {
+                return arrayLabels.get((int) value);
+            }
+        });
+        lineChart.getDescription().setEnabled(false);
+        lineChart.getLegend().setEnabled(false);
+        lineChart.setData(lineData);
+        lineChart.invalidate();
         return listView;
     }
 }

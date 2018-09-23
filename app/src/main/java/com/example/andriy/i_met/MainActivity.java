@@ -9,27 +9,28 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
-    private Fragment mainFragment;
-    private Fragment statisticsFragment;
-    private LinearLayout fragmentPlace;
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+    private MainFragment mainFragment;
+    private StatisticsFragment statisticsFragment;
+    private AdviceFragment adviceFragment;
     private BottomNavigationView navigationView;
     private FragmentTransaction fragmentTransaction;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mainFragment= new MainFragment();
-        statisticsFragment=new StatisticsFragment();
-        fragmentPlace=(LinearLayout) findViewById(R.id.fragmentPlace);
-        navigationView=(BottomNavigationView) findViewById(R.id.bottomNavigationView);
-        fragmentTransaction=getFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.fragmentPlace,mainFragment);
-        navigationView.setSelectedItemId(R.id.botoom_navigation_main);
+        mainFragment = new MainFragment();
+        statisticsFragment = new StatisticsFragment();
+        navigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
+        fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction.add(R.id.fragmentPlace, mainFragment);
+        navigationView.setSelectedItemId(R.id.bottom_navigation_main);
         navigationView.setOnNavigationItemSelectedListener(this);
         fragmentTransaction.commit();
 
@@ -38,16 +39,26 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.botoom_navigation_main:
-                fragmentTransaction=getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragmentPlace,mainFragment);
+        switch (item.getItemId()) {
+            case R.id.bottom_navigation_main:
+                mainFragment = new MainFragment();
+                fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.fragmentPlace, mainFragment);
                 fragmentTransaction.commit();
-            case R.id.botoom_navigation_statistics:
-                fragmentTransaction=getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragmentPlace,statisticsFragment);
+                break;
+            case R.id.bottom_navigation_statistics:
+                statisticsFragment = new StatisticsFragment();
+                fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.fragmentPlace, statisticsFragment);
                 fragmentTransaction.commit();
+                break;
+            case R.id.bottom_navigation_economy:
+                adviceFragment = new AdviceFragment();
+                fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.fragmentPlace, adviceFragment);
+                fragmentTransaction.commit();
+                break;
         }
-        return false;
+        return true;
     }
 }
