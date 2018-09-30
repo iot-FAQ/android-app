@@ -56,7 +56,9 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView2"
             app:layout_constraintVertical_bias="0.19999999" />
 
-        <ImageView
+        <ImageButton
+            android:background="#00000000"
+            android:id="@+id/settingButton"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginEnd="8dp"
@@ -64,6 +66,8 @@
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:onClick="onClick"
+            android:scaleType="fitStart"
             android:src="@drawable/icons_setting"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -101,5 +105,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <TextView
+            android:id="@+id/serialNumberDeviceOnItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>

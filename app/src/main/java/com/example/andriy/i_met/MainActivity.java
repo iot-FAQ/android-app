@@ -2,6 +2,7 @@ package com.example.andriy.i_met;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -12,14 +13,19 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+import it.sephiroth.android.library.widget.HListView;
+
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
     private MainFragment mainFragment;
     private StatisticsFragment statisticsFragment;
     private AdviceFragment adviceFragment;
     private BottomNavigationView navigationView;
     private FragmentTransaction fragmentTransaction;
+    private ImageView profileIcon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +39,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         navigationView.setSelectedItemId(R.id.bottom_navigation_main);
         navigationView.setOnNavigationItemSelectedListener(this);
         fragmentTransaction.commit();
-
+        profileIcon = findViewById(R.id.profileIcon);
+        profileIcon.setOnClickListener(this);
 
     }
 
@@ -60,5 +67,32 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 break;
         }
         return true;
+    }
+
+    @Override
+    public void onClick(View view) {
+        try {
+            switch (view.getId()) {
+                case R.id.profileIcon:
+                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.settingButton:
+                    View parrent = (View) view.getParent();
+                    TextView serialNumber = parrent.findViewById(R.id.serialNumberDeviceOnItem);
+                    for (Device i : MainFragment.uploadDevice()) {
+                        if (i.getSerialNumber() == Integer.valueOf(serialNumber.getText().toString())) {
+                            Log.d("ok", String.valueOf(i.getTypeDevice()));
+                            Intent intent1 = new Intent(getApplicationContext(), SettingsDeviceActivity.class);
+                            intent1.putExtra("serialNumber", i.getSerialNumber());
+                            startActivity(intent1);
+                            break;
+                        }
+                    }
+                    break;
+            }
+        }catch (IllegalStateException e){
+            Log.e("exception", e.toString());
+        }
     }
 }
