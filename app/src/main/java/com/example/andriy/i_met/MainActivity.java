@@ -2,7 +2,9 @@ package com.example.andriy.i_met;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -94,5 +96,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         }catch (IllegalStateException e){
             Log.e("exception", e.toString());
         }
+    }
+    protected   boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null;
     }
 }

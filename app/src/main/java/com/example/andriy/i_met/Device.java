@@ -1,10 +1,14 @@
 package com.example.andriy.i_met;
 
+import java.util.ArrayList;
+import java.util.Map;
+
 public class Device {
     private TypeDevice typeDevice;
     private String address;
     private int data;
     private int serialNumber;
+    Map<String, Integer> mapData;
 
     public Device() {
 
@@ -61,4 +65,11 @@ public class Device {
         return data;
     }
 
+    public void setMapData(Map<String, Integer> mapData) {
+        this.mapData = mapData;
+    }
+
+    public Map<String, Integer> getMapData() {
+        return mapData;
+    }
 }

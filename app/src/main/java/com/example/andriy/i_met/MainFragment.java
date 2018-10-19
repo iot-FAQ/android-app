@@ -34,7 +34,7 @@ public class MainFragment extends Fragment {
     }
 
     public static ArrayList<Device> uploadDevice() {
-        arrayDevice.add(new Device("Срисйька 81", TypeDevice.GAS, 123456));
+        arrayDevice.add(new Device("Стрийська 81", TypeDevice.GAS, 123456));
         arrayDevice.add(new Device("Стрийська 81", TypeDevice.WATER, 123457));
         arrayDevice.add(new Device("Стрийська 115", TypeDevice.WATER, 123458));
         arrayDevice.add(new Device("Гашека 30", TypeDevice.WATER, 123459));

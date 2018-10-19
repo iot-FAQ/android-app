@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +22,10 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Map;
 
 public class LastDataOfDeviceAdapter extends ArrayAdapter<Device> {
@@ -38,12 +42,21 @@ public class LastDataOfDeviceAdapter extends ArrayAdapter<Device> {
         Device current = getItem(position);
         LineChart lineChart = listView.findViewById(R.id.lineChartDeviceData);
         final ArrayList<Entry> listEntry = new ArrayList<>();
-        listEntry.add(new Entry(0, 50));
-        listEntry.add(new Entry(1, 65));
-        listEntry.add(new Entry(2, 100));
-        listEntry.add(new Entry(3, 115));
-        listEntry.add(new Entry(4, 120));
-        listEntry.add(new Entry(5, 135));
+        Map<String,Integer> map=current.getMapData();
+        int k=0;
+        final ArrayList<String> arrayLabels = new ArrayList<>();
+        ArrayList<Integer> array=new ArrayList<Integer>();
+        for (String i : map.keySet()) {
+            array.add(Integer.parseInt(i));
+        }
+        Collections.sort(array);
+        for(int i : array){
+            arrayLabels.add(String.valueOf(i)+"/2018");
+        }
+        for (int i : array){
+            listEntry.add(new Entry(k, map.get(String.valueOf(i))));
+            k+=1;
+        }
         LineDataSet dataSet = new LineDataSet(listEntry, "gas");
         dataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
         dataSet.setDrawValues(false);
@@ -54,13 +67,7 @@ public class LastDataOfDeviceAdapter extends ArrayAdapter<Device> {
         } else {
             dataSet.setFillColor(ContextCompat.getColor(getContext(), R.color.waterChart));
         }
-        final ArrayList<String> arrayLabels = new ArrayList<>();
-        arrayLabels.add("21/09/2018");
-        arrayLabels.add("22/09/2018");
-        arrayLabels.add("23/09/2018");
-        arrayLabels.add("24/09/2018");
-        arrayLabels.add("25/09/2018");
-        arrayLabels.add("26/09/2018");
+
         LineData lineData = new LineData(dataSet);
         XAxis xAxis = lineChart.getXAxis();
         YAxis yAxis= lineChart.getAxisLeft();

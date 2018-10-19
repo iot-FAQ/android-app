@@ -19,7 +19,8 @@ android {
 }
 
 dependencies {
-    compile 'pl.droidsonroids.gif:android-gif-drawable:1.1.0'
+    compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.0'
+    //noinspection GradleCompatible
     implementation 'com.android.support:cardview-v7:27.1.1'
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support:design:27.1.1'
@@ -31,7 +32,9 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    compile 'com.squareup.picasso:picasso:2.5.2'
-
+    compile 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation'com.squareup.retrofit2:converter-gson:2.3.0'
+    compile 'com.github.100rabhkr:GetJSON:1.0'
 
 }
