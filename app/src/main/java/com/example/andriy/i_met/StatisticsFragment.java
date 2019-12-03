@@ -66,6 +66,7 @@ public class StatisticsFragment extends Fragment {
             JsonObject jsonObject = new GetJson().AsJSONObject("http://imet.pythonanywhere.com/get_data?email=alex@gmail.com&type=gas&counter=3663434534&week=week");
             Set<Map.Entry<String, JsonElement>> set=jsonObject.entrySet();
             for (Map.Entry i : set){
+                Log.d("ok",i.toString());
                 Log.d("ok",i.getValue().toString().substring(1,i.getValue().toString().length()-1));
                 map.put(i.getKey().toString(), Integer.parseInt( i.getValue().toString().substring(1,i.getValue().toString().length()-1)));
             }

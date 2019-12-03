@@ -34,13 +34,10 @@ public class MainFragment extends Fragment {
     }
 
     public static ArrayList<Device> uploadDevice() {
-        arrayDevice.add(new Device("Стрийська 81", TypeDevice.GAS, 123456));
-        arrayDevice.add(new Device("Стрийська 81", TypeDevice.WATER, 123457));
+        arrayDevice=new ArrayList<>();
         arrayDevice.add(new Device("Стрийська 115", TypeDevice.WATER, 123458));
-        arrayDevice.add(new Device("Гашека 30", TypeDevice.WATER, 123459));
-        arrayDevice.add(new Device("Стрийська 107", TypeDevice.WATER, 123467));
-        arrayDevice.add(new Device("Максимовича 6", TypeDevice.WATER, 1223468));
-        arrayDevice.add(new Device("Максимовича 9", TypeDevice.WATER, 123469));
+        arrayDevice.add(new Device("Cтрийська 115", TypeDevice.GAS, 123459));
+
         return arrayDevice;
     }
 

@@ -1,12 +1,13 @@
 package com.example.andriy.i_met;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     }
 
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+    public boolean onNavigationItemSelected( MenuItem item) {
         switch (item.getItemId()) {
             case R.id.bottom_navigation_main:
                 mainFragment = new MainFragment();
@@ -91,6 +92,18 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                             break;
                         }
                     }
+                    break;
+                case R.id.addDeviceButton:
+                    AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+                    alertDialog.setTitle("Увага");
+                    alertDialog.setMessage("Дана функція не доступна на демо версії додатку.");
+                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    alertDialog.show();
                     break;
             }
         }catch (IllegalStateException e){

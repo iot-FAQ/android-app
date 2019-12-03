@@ -49,10 +49,14 @@ public class LastDataOfDeviceAdapter extends ArrayAdapter<Device> {
         for (String i : map.keySet()) {
             array.add(Integer.parseInt(i));
         }
-        Collections.sort(array);
-        for(int i : array){
-            arrayLabels.add(String.valueOf(i)+"/2018");
-        }
+        arrayLabels.add("29/11/2018");
+        arrayLabels.add("30/11/2018");
+        arrayLabels.add("1/12/2018");
+        arrayLabels.add("2/12/2018");
+        arrayLabels.add("3/12/2018");
+        arrayLabels.add("4/12/2018");
+        arrayLabels.add("5/12/2018");
+
         for (int i : array){
             listEntry.add(new Entry(k, map.get(String.valueOf(i))));
             k+=1;
